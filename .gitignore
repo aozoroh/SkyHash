@@ -1,0 +1,16 @@
+# Mengabaikan cache python
+__pycache__/
+*.pyc
+
+# Mengabaikan folder virtual environment Anda (Sangat Penting!)
+.venv/
+venv/
+ENV/
+env/
+
+# Menyembunyikan README dari unduhan ZIP orang lain
+README.md export-ignore
+
+# Menyembunyikan konfigurasi git itu sendiri
+.gitignore export-ignore
+.gitattributes export-ignore
