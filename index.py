@@ -16,7 +16,7 @@ def show_banner():
 {Fore.BLUE}     ___) | . \   \ \ |  _  | (_| \__ \ | | |
 {Fore.GREEN}    |____/|_|\_\   \_\|_| |_|\__,_|___/_| |_|
 {Fore.CYAN}  ===========================================
-{Fore.GREEN}   [+] SKY - Hash Cracker Tool v1.0
+{Fore.GREEN}   [+] SKY - Hash Cracker Tool v1.1
 {Fore.GREEN}   [+] Engine: MD5 Brute-Force (Stealth Core)
 {Fore.CYAN}  ===========================================
     """
@@ -33,7 +33,9 @@ def hash_translate(hash_target, daftar_kata, hash_type):
             hash_result = hashlib.sha1(kata.encode()).hexdigest()
         elif hash_type == 'sha256':
             hash_result = hashlib.sha256(kata.encode()).hexdigest()
-        
+        elif hash_type == 'sha512':
+            hash_result = hashlib.sha512(kata.encode()).hexdigest()
+
         if hash_result == hash_target:
             return kata
     return None
@@ -44,16 +46,15 @@ def main():
     parser = argparse.ArgumentParser(description='SKY - Hash Cracker Tool')
     parser.add_argument('hash', type=str, help='the hash you want to translate')
     parser.add_argument('--wordlists', "-w", type=str, required=True, help='the wordlists you want to use')
-    parser.add_argument('--version',"-v", action='version', version='v1.0')
-    parser.add_argument('--type', "-t", type=str, choices=['md5', 'sha1', 'sha256'], default='md5', help='the type of hash (default: md5)')
+    parser.add_argument('--version',"-v", action='version', version='v1.1')
+    parser.add_argument('--type', "-t", type=str, choices=['md5', 'sha1', 'sha512', 'sha256'], default='md5', help='the type of hash (default: md5)')
 
     args = parser.parse_args()
 
-    if not args.hash or not args.wordlists:
-        parser.print_help()
+    if not args.hash:
         sys.exit(1)
-
-    show_banner()
+    else:
+        show_banner()
     
 
     # Membaca berkas wordlist secara aman
